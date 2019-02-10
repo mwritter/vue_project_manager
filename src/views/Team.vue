@@ -5,7 +5,11 @@
       <v-layout row wrap>
         <v-flex xs12 sm6 md4 lg3 v-for="person in team" :key="person.name">
           <v-card flat class="text-xs-center ma-3">
-            <v-responsive class="pt-4">image goes here</v-responsive>
+            <v-responsive class="pt-4">
+              <v-avatar size="100" class="grey lighten-2">
+                <img :src="person.avatar">
+              </v-avatar>
+            </v-responsive>
             <v-card-text>
               <div class="subheading">{{person.name}}</div>
               <div class="grey--text">{{person.role}}</div>
@@ -28,9 +32,9 @@ export default {
   data() {
     return {
       team: [
-        { name: "Matthew Ritter", role: "Web Developer" },
-        { name: "Virginia Ritter", role: "Teacher" },
-        { name: "Max Carter", role: "Graphic Designer" }
+        { name: "Matthew Ritter", role: "Web Developer", avatar: "/ocean.jpg" },
+        { name: "Virginia Ritter", role: "Teacher", avatar: "/flower.jpg" },
+        { name: "Max Carter", role: "Graphic Designer", avatar: "/lake.jpg" }
       ]
     };
   }

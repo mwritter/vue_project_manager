@@ -6,11 +6,12 @@
         <h2>Add a New Project</h2>
       </v-card-title>
       <v-card-text>
-        <v-form class="px-3">
-          <v-text-field label="Title" v-model="title" prepend-icon="folder"></v-text-field>
-          <v-textarea label="Information" v-model="content" prepend-icon="edit"></v-textarea>
+        <v-form class="px-3" ref="form">
+          <v-text-field label="Title" v-model="title" prepend-icon="folder" :rules="inputRules"></v-text-field>
+          <v-textarea label="Information" v-model="content" prepend-icon="edit" :rules="inputRules"></v-textarea>
           <v-menu>
             <v-text-field
+              :rules="inputRules"
               :value="formattedDate"
               label="Due date"
               slot="activator"
@@ -32,12 +33,15 @@ export default {
     return {
       title: "",
       content: "",
-      due: null
+      due: null,
+      inputRules: [v => v.length >= 3 || "Minimum length is 3 characters"]
     };
   },
   methods: {
     submit() {
-      console.log(this.title, this.content);
+      if (this.$refs.form.validate()) {
+        console.log(this.title, this.content);
+      }
     }
   },
   computed: {
